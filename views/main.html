@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>BudgetTravel</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1 style="color:darkturquoise; font-size:150px">Budget Travel</h1>
+            <h2 style="color:black">Tight Budget? Dream about your getaway vacation? </h2>
+            <h2><a href="#about" class="btn btn-dark btn-lg">Click to make your dream come true</a>
+            <!-- Trigger the modal with a button -->
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Click here if you are returning customers!</button></h2>
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div class="container">
+              <div class="row">
+              <div class="col-6-md" id="abouth3">
+                <h3>People, especailly Millennials, are prioritizing their cars and homes less and less, and assigning greater importance to personal experiences — 
+                   and showing off pictures of them. It's a trend that's fueling the growth of travel company. However, how many of you overspend
+                    your budget during travel or pay more than you think in local attractions, accommodation and meals. Without planning and budgeting,
+                    travel is really a gut-punching event.</h3>
+                <h3>This budget travel site is a solution for you who want to travel with free of mind. Our site can help you find
+                   attractions around the area of interest within your budget. If you are interested in signing up, please
+                   <a href="/signup">Click here!</a></h3>
+                
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h1 class="modal-title">Login</h1>
+                            </div>
+                             <div class="modal-body">
+                                  <form action="/login" method="post">
+                                    <div class="form-group"><span class="fa fa-envelope"></span>
+                                    <label for="Email">Email</label>
+                                    <input type="text" class="form-control" name="username" placeholder="Email">
+                                    </div>
+            
+                                    <div class="form-group"><span class="fa fa-lock"></span>
+                                    <label for="Password">Password</label>
+                                    <input type="password" class="form-control" name="Password" placeholder="Password">
+                                    </div>
+            
+                                    <label><input name="remember_me" type="checkbox">Remember me</label>
+                                    <button id="btn1" type="submit" class="btn btn-danger">login</button>
+                                    <button id="btn1" type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                  </form>
+                                
+                                <hr>
+                                <a href="/login/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span>Facebook Login</a>
+                                
+                                <a href="/auth/google" class="btn btn-warning"><span class="fa fa-google"></span>Gmail login</a>
+                                <br><br>
+                                <p>Do not have an account?
+                                <a href="/signup">Open an account here!</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!--modal-->
+            </div>
+        </div> <!-- /.container -->
+    </section>
+
+</body>
+</html>

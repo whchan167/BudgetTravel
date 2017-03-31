@@ -1,14 +1,15 @@
-//Dependencies
-var express = require ('express');
-var router = express.Router();
+var path = require("path");
 
-//link the Article database file to controller.js
-var Travel = require('../models/Travel.js');
-var User = require('../models/User.js');
+//link the database models file to controller.js
+var User = require("../models/User");
 
 //Main Route
-router.get('/', function(req, res){
-  res.sendFile('./public/index.html');
-});
+module.exports = function(app, passport){
+  app.get('/', function(req, res){
+  res.sendFile(path.join(__dirname, "../views/main.html"));
 
-module.exports = router;
+  app.get("/signup", function(req, res) {
+    	res.sendFile(path.join(__dirname, "../views/signup.html"));
+  	});
+});
+}
