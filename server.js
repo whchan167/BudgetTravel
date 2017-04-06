@@ -29,7 +29,7 @@ app.use(passport.session());
 app.use(flash());
 
 //import routes from controllers
-//require('./config/passport')(passport);
+require('./config/passport')(passport);
 require('./controllers/controller.js')(app, passport);
 
 //setting up mongoose database

@@ -1,18 +1,17 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var userSchema = new Schema ({
-  username: {
-    type: String,
-    unique: true,
-  },
-  password: {
-  	type: String,
-  	unique:true,
-  },
-  date: {
-    type: Date,
-  }
+var bcrypt = require('bcrypt');
+var userSchema = mongoose.Schema({
+	facebook: {
+		id: String,
+		token: String,
+		name: String
+	},
+	google: {
+		id: String,
+		token: String,	
+		name: String
+	}
 });
 
-var User = mongoose.model('User', userSchema);
-module.exports = User;
+
+module.exports = mongoose.model('User', userSchema);
