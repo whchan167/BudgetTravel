@@ -16,94 +16,154 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Custom CSS -->
-    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/style1.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     
     <!-- Angular js -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    
+      
 </head>
 
-<body ng-app= "mainApp" ng-controller="foursquare" class="fixed-header modal-open">
+<body ng-app= "mainApp" ng-controller="Api">
 
-    <div class="container">
-        <form>
-            <strong>Address:</strong> <input type="text" ng-model="obj.address">
-            <br>
-            <strong>Price:</strong> <input type="text" ng-model="obj.price">
-            <button ng-click="submit()">submit</button>
-        </form>
-
-        <div class="jumbotron">
-            <div ng-repeat="attraction in attractions">
-                <p>{{attraction.venue.name}}</p>
-                <p>{{attraction.venue.photos.groups[0].items[0]}}</p>
-            </div>
-        </div>
-
-       <div class="jumbotron">
-            <div ng-repeat="restaurant in restaurants">
-                <span>{{restaurant.venue.name}}</span>
-            </div>
-        </div>
+    <div class="jumbotron">
+            <form name="selection">
+                <label for="Location"><strong>Select the city of destination:</strong></label><br>
+                <select name="Destination" ng-model="obj.address">
+                    <option value="orlando">Orlando, US</option>
+                    <option value="los angeles">Los Angeles, US</option>
+                    <option value="paris, france">Paris, France</option>
+                </select><br>
+                <label for="Price"><strong>Total you want to spend per day (attractions, meals(lunch and dinner) and hotels):</strong></label><br>
+                <select name="Price" ng-model="obj.price">
+                    <option value="1">range from 150 to 200 per day</option>
+                    <option value="2">range from 200 to 300 per day</option>
+                    <option value="3">range from 300 to 400 per day</option>
+                    <option value="4">range from 400 to 500 per day</option>
+                </select><br>
+                <button ng-click="submit()">submit</button>
+            </form>
     </div>
 
-   
-    <div map-lazy-load="https://maps.google.com/maps/api/js"
-        map-lazy-load-params="{{googleMapsUrl}}">
-        <ng-map center="41,-87" zoom="3"></ng-map>
-    </div>
-    
-    
-</body>
-    
-    
-    
-    
-    
-    
-    
-    
+        <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-6" id="attractionDiv">
+                    <h3>Recommended attractions</h3><hr>
+                        <div id="attraction" ng-repeat="attraction in attractions">
+                            <img ng-src="{{attraction.venue.photos.groups[0].items[0].prefix + '110x110' + attraction.venue.photos.groups[0].items[0].suffix}}"> 
+                            <p>{{attraction.venue.name}}</p>
+                            <p>{{attraction.venue.location.address + "," + attraction.venue.location.city + "," + attraction.venue.location.state + "" + attraction.venue.location.postalCode}}</p>
+                            <p>{{attraction.venue.contact.formattedPhone}}</p>
+                            <p>Rating: {{attraction.venue.rating}} out of 10</p>
+                        </div>
+                   </div>
+                   
+                   <div class="col-md-6" id="restaurantDiv">
+                     <h3>Recommended restaurants</h3><hr> 
+                        <div id="restaurant" ng-repeat="restaurant in restaurants">
+                            <img ng-src="{{restaurant.image_url}}">
+                            <p>{{restaurant.name}}</p>
+                            <p>{{restaurant.location.display_address[0] + "," + restaurant.location.display_address[2]}}</p>
+                            <p>{{restaurant.display_phone}}</p>
+                            <p>Rating: {{restaurant.rating}} out of 5</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" id="hotelDiv">
+                     <h3>Recommended Hotels</h3><hr> 
+                        <div id="hotels" ng-repeat="hotel in data">
+                            <img ng-src="{{hotel.image}}">
+                            <p>{{hotel.title}}</p>
+                            <p>{{hotel.address}}</p>
+                            <p>price: {{hotel.price}}</p>
+                        </div>
+                    </div>
+
+               </div>
+       </div>
+    </body>
     <script>
 
         var app = angular.module('mainApp', []);
-        var clientID= '';
-        var clientSecret = '';
+        var clientID= 'B0SVSXBWCRVOHSUCP4OFG0OIJFSHGBMLQFKJDRBZQBO3XYPD';
+        var clientSecret = 'OU15FEKKKPAKV4JWOOGDY3WNTMRUDHVHJL1QFXC1QGPPVO20';
 
-        app.controller('foursquare', function($scope, $http){
+        app.controller('Api', function($scope, $http, MyYelpAPI, scrape){
+        
         $scope.obj = {
             address: '',
-            price: '',
+            price: ''
         }
+        
         $scope.submit = function(){
-        $http.get("https://api.foursquare.com/v2/venues/explore/?near="+ $scope.obj.address + "&venuePhotos=1&section='sights,arts'&price=" + $scope.obj.price +
+        $http.get("https://api.foursquare.com/v2/venues/explore?near="+ $scope.obj.address + "&query='theme,parks'&venuePhotos=1&price=" + $scope.obj.price +
         "&client_id=" + clientID +
         "&client_secret=" + clientSecret +
         "&v=20170402").success(function(data){
             var venue = data.response.groups[0].items
             $scope.attractions = venue;
             console.log(venue)
-            });
-        $http.get("https://api.foursquare.com/v2/venues/explore/?near='houston'" + "&venuePhotos=1&section='food,drinks'&price=" + $scope.obj.price +
-        "&client_id=" + clientID +
-        "&client_secret=" + clientSecret +
-        "&v=20170402").success(function(data){
-            var venue = data.response.groups[0].items
-            $scope.restaurants = venue;     
-            });
-        $http.get("http://api.tixik.com/api/nearby/?lang=en&lat=36.106121163930377&lng=28.07762145996093&limit=10&key=20170404496549966679056").success(function(data){
-                console.log(data)
-            })
-         }
         });
         
-    
+        MyYelpAPI.retrieveYelp($scope.obj.address, function(data){
+                    $scope.restaurants = data.businesses
+                    console.log(data);
+                });
         
-        app.controller('googlemap', function($scope, $http)
-        {
-        $="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVOPzPwxT1WP3hPTFGuLQDLzt30migZfc"
+        scrape.scrapeParis().success(function(data){
+                  $scope.data = data
         })
+
+        
+            }
+        });
+    
+        //create a factory function for yelp and skyscan search 
+        app.factory("MyYelpAPI", function($http) {
+                return {
+                    "retrieveYelp": function(address, callback) {
+                        var method = 'GET';
+                        var url = 'http://api.yelp.com/v2/search';
+                        var params = {
+                                callback: 'angular.callbacks._0',
+                                location: address,
+                                oauth_consumer_key: 'ygFawGgchLPiVcFVWN8nKQ', //Consumer Key
+                                oauth_token: '_L4v1t6kMsRuB92hhUNlI7xDCQdhH6Cz', //Token
+                                oauth_signature_method: "HMAC-SHA1",
+                                oauth_timestamp: new Date().getTime(),
+                                oauth_nonce: randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'),
+                                term: 'food',
+                                sort: 2
+                            };
+                        var consumerSecret = 'kM5LMHLL_OLe2N9NeenSgQ2bpmg'; //Consumer Secret
+                        var tokenSecret = 'G-kkHPcb5BRt60VdusOV7C8PCLE'; //Token Secret
+                        var signature = oauthSignature.generate(method, url, params, consumerSecret, tokenSecret, { encodeSignature: false});
+                        params['oauth_signature'] = signature;
+                        $http.jsonp(url, {params: params}).success(callback)
+                    }
+                }
+            });
+
+            app.factory("scrape", function($http){
+                return {
+                    "scrapeParis": function(){
+                       return $http({
+                            url: 'http://localhost:3000/scrapeParis',
+                            method: "GET"
+                       })
+                     }
+                }
+            })
+
+            
+
+            function randomString(length, chars) {
+                var result = '';
+                for (var i = length; i > 0; --i) {result += chars[Math.round(Math.random() * (chars.length - 1))]};
+                return result;
+            };
     </script>
+    <script src="/node_modules/oauth-signature/dist/oauth-signature.js"></script>
 </html>

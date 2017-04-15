@@ -7,6 +7,9 @@ var session = require('express-session');
 var passport = require("passport");
 var flash = require('connect-flash');
 var path = require('path');
+var cheerio = require ("cheerio")
+var request = require ("request")
+
 mongoose.Promise = Promise
 
 //requiring bodyParser
@@ -14,9 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use("/node_modules", express.static('node_modules'));
 
-//serve static content for app from the "public" folder
-app.use(express.static('public'));
+//serve static content for app from the "public" and "views" folder
+app.use(express.static(__dirname + '/public'));
 app.set(express.static(__dirname + '/views'));
 
 //using passport.js to authenticate the user to login the page
@@ -47,7 +51,6 @@ mongoose.connect(db, function(error) {
     console.log("mongoose connection is successful");
   }
 });
-
 
 //port listener
 var PORT = process.env.PORT || 3000;

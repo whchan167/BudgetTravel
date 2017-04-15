@@ -7,7 +7,7 @@
 /* Global Styles */
 
 html,
-body {
+body {overflow: hidden;
     width: 100%;
     height: 100%;
 }
@@ -22,7 +22,7 @@ body {
     vertical-align: middle;
 }
 
-.text-vertical-center h1 {
+.text-vertical-center {
     margin: 0;
     padding: 0;
     font-size: 4.5em;
@@ -49,7 +49,7 @@ body {
 
 /* About */
 
-.about {min-width:200px
+.about {min-width:200px;
     display: table;
     position: relative;
     width: 100%;
@@ -68,3 +68,15 @@ footer {
     padding: 50px 0;
 }
 
+#restaurantDiv, #attractionDiv {width:28%;
+                                background-color:rosybrown;
+                                margin-right:20px;
+                                float:left;}
+
+#restaurant, #attraction {display: block;}
+
+img {float:left;
+     position: relative;
+     margin-right:10px;
+     margin-bottom:20px;
+     }

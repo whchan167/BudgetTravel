@@ -1,0 +1,29 @@
+body {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 50%;
+    background: url(./img/budget1.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+#restaurantDiv, #attractionDiv, #hotelDiv {width:30%;
+                                background-color:rosybrown;
+                                margin-right:20px;
+                                float:left;}
+
+#restaurant, #attraction, #hotels {display: block; 
+                                    height:150px; 
+                                    padding:15px}
+
+img {width:110px; height:110px;
+     float:left;
+     position: relative;
+     margin-right:10px;
+     margin-bottom:30px;
+     }
+
+#attractinfo {float: right}
