@@ -28,17 +28,13 @@ module.exports = function(passport){
 	    clientSecret: configAuth.facebookAuth.clientSecret,
 	    callbackURL: configAuth.facebookAuth.callbackURL
 	  },
-	  function(accessToken, refreshToken, profile, done) {
-	  	console.log(profile, done);
-	  		
+	  function(accessToken, refreshToken, profile, done) {	
 	  		User.findOne({'facebook.id': profile.id
 			}).then(function(user){
 			
 			if(user){
-					console.log('PASSPORT fb: USER ALREADY EXISTS');
 				  	return done(null, user);
 			} else {
-				console.log('PASSPORT fb : BEFORE CREATE');
 				var newUser = new User();
 				newUser.facebook.id = profile.id;
 				newUser.facebook.Token = accessToken;
@@ -64,7 +60,6 @@ module.exports = function(passport){
       callbackURL: configAuth.googleAuth.callbackURL
   	},
   	function(token, tokenSecret, profile, done) {
-      console.log(token, tokenSecret, profile, done);
       		User.findOne({'google.id': profile.id
 			}).then(function(user){
 			if(user){
