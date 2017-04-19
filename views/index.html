@@ -56,17 +56,17 @@
                                     </select><br>
                                     <label for="Price"><strong>How much you want to spend in attraction (theme park) per day:</strong></label><br>
                                     <select name="Price" ng-model="obj.price1">
-                                        <option value="1">$</option>
+                                        <option value="1">$ (least expensive)</option>
                                         <option value="2">$$</option>
                                         <option value="3">$$$</option>
-                                        <option value="4">$$$$</option>
+                                        <option value="4">$$$$ (most expensive)</option>
                                     </select><br>
                                     <label for="Price"><strong>How much you want to spend in restaurants per day:</strong></label><br>
                                     <select name="Price" ng-model="obj.price2">
-                                        <option value="1">$</option>
-                                        <option value="2">$$</option>
-                                        <option value="3">$$$</option>
-                                        <option value="4">$$$$</option>
+                                        <option value="1">$ = under $10 </option>
+                                        <option value="2">$$ = $11-$30</option>
+                                        <option value="3">$$$ = $31-$60</option>
+                                        <option value="4">$$$$ = above $61</option>
                                     </select><br><br>
                                     <strong>Check-In Date(yyyy-mm-dd):</strong>
                                     <input type="text" name="startdate" ng-model="obj.date1" required>
