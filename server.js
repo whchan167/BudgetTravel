@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require("passport");
-var flash = require('connect-flash');
 var path = require('path');
 var cheerio = require ("cheerio")
 var request = require ("request")
@@ -30,7 +29,6 @@ app.use(session({ secret: 'keep it safe',
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
 //import routes from controllers
 require('./config/passport')(passport);

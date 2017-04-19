@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
 var userSchema = mongoose.Schema({
 	facebook: {
 		id: String,
