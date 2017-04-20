@@ -1,6 +1,5 @@
 module.exports = {
 	'facebookAuth' : {
-		'facebookAuth' : {
 		'clientID': '796929340454925',
         'clientSecret': '4ef444af73e244c04fcb44488cfd001a',
 		'callbackURL': 'https://polar-bastion-63233.herokuapp.com/login/facebook/return'
