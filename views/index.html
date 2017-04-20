@@ -85,7 +85,9 @@
                 </div><!--modal-->    
 
                         <div map-lazy-load="https://maps.google.com/maps/api/js">  
-                            <ng-map center="{{map.lat}}, {{map.lng}}" zoom="12"></ng-map>
+                            <ng-map center="{{map.lat}}, {{map.lng}}" zoom="12">
+                                <marker ng-repeat="pos in restaurants" position="{{pos.coordinates.latitude}}, {{pos.coordinates.longitude}}"></marker>
+                            </ng-map>
                             </div>
                       
         <div class="container-fluid">
@@ -179,6 +181,8 @@
         
         $http.post("/yelp", $scope.obj).success(function(data) {
             $scope.restaurants = data.businesses;
+            console.log(data.businesses);
+        
         })
 
 
