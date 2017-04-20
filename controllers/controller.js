@@ -32,7 +32,7 @@ module.exports = function(app, passport){
     if(err){
         console.log("error in db")
     }else{
-        res.json(data[0]);
+        res.json(data[0])
     	}
 		})
 });
@@ -61,6 +61,7 @@ module.exports = function(app, passport){
 	app.get('/logout', function(req, res){
 		req.logout();
 		req.session.destroy();
+		User.remove({});
 		res.redirect('/');
 	});
 

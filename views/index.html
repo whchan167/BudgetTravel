@@ -54,20 +54,21 @@
                                         <option value="la">Los Angeles, US</option>
                                         <option value="paris">Paris, France</option>
                                     </select><br>
-                                    <label for="Price"><strong>How much you want to spend in attraction (theme park) per day:</strong></label><br>
+                                    <label for="Price"><strong>How much do you want to spend in attraction (theme park) per day:</strong></label><br>
                                     <select name="Price" ng-model="obj.price1">
                                         <option value="1">$ (least expensive)</option>
                                         <option value="2">$$</option>
                                         <option value="3">$$$</option>
                                         <option value="4">$$$$ (most expensive)</option>
                                     </select><br>
-                                    <label for="Price"><strong>How much you want to spend in restaurants per day:</strong></label><br>
+                                    <label for="Price"><strong>How much do you want to spend in restaurants per day:</strong></label><br>
                                     <select name="Price" ng-model="obj.price2">
                                         <option value="1">$ = under $10 </option>
                                         <option value="2">$$ = $11-$30</option>
                                         <option value="3">$$$ = $31-$60</option>
                                         <option value="4">$$$$ = above $61</option>
-                                    </select><br><br>
+                                    </select><br>
+                                    <br>
                                     <strong>Check-In Date(yyyy-mm-dd):</strong>
                                     <input type="text" name="startdate" ng-model="obj.date1" required>
                                     <br>
@@ -94,9 +95,9 @@
                     <hr>
                         <div id="attraction" ng-repeat="attraction in attractions">
                             <img ng-src="{{attraction.venue.photos.groups[0].items[0].prefix + '110x110' + attraction.venue.photos.groups[0].items[0].suffix}}"> 
-                            <p>{{attraction.venue.name}}</p>
-                            <p>{{attraction.venue.location.address + "," + attraction.venue.location.city + "," + attraction.venue.location.state + "" + attraction.venue.location.postalCode}}</p>
-                            <p>{{attraction.venue.contact.formattedPhone}}</p>
+                            <p>Name: {{attraction.venue.name}}</p>
+                            <p>Address: {{attraction.venue.location.address + "," + attraction.venue.location.city + "," + attraction.venue.location.state + "" + attraction.venue.location.postalCode}}</p>
+                            <p>Phone: {{attraction.venue.contact.formattedPhone}}</p>
                             <p>Rating: {{attraction.venue.rating}} out of 10</p>
                         </div>
                    </div>
@@ -105,9 +106,9 @@
                      <h3>Recommended restaurants</h3><hr> 
                         <div id="restaurant" ng-repeat="restaurant in restaurants">
                             <img ng-src="{{restaurant.image_url}}">
-                            <p>{{restaurant.name}}</p>
-                            <p>{{restaurant.location.display_address[0] + "," + restaurant.location.display_address[2]}}</p>
-                            <p>{{restaurant.display_phone}}</p>
+                            <p>Name: {{restaurant.name}}</p>
+                            <p>Address: {{restaurant.location.display_address[0] + "," + restaurant.location.display_address[2]}}</p>
+                            <p>Phone: {{restaurant.display_phone}}</p>
                             <p>Rating: {{restaurant.rating}} out of 5</p>
                         </div>
                     </div>
@@ -116,9 +117,9 @@
                      <h3>Recommended Hotels</h3><hr> 
                         <div id="hotels" ng-repeat="hotel in data">
                             <img ng-src="{{hotel.image}}">
-                            <p>{{hotel.title}}</p>
-                            <p>{{hotel.address}}</p>
-                            <p>{{hotel.price}}</p>
+                            <p>Hotel: {{hotel.title}}</p>
+                            <p>Address: {{hotel.address}}</p>
+                            <p>Price: <ins>{{hotel.price}}</ins></p>
                         </div>
                     </div>
 
