@@ -61,6 +61,7 @@ body {
     -o-background-size: cover;
 }
 
+.modal-content {background: url(./img/login.jpg)}
 
 /* Footer */
 

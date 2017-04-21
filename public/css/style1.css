@@ -22,6 +22,8 @@ body {
 #form {font-style: italic;
        font-size: 15px}
 
+.modal-content {background-color: deepskyblue}
+
 #restaurantDiv, #attractionDiv, #hotelDiv {width:30%;
                                 background-color:rosybrown;
                                 margin-right:20px;
